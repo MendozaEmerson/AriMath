@@ -1,0 +1,87 @@
+{% load bootstrap5 %}
+{% bootstrap_css %}
+
+{% include "./page/header.html" %}
+
+{% include "./page/navbar.html" %}
+
+<script>
+    let inputTable;
+    let counter = 0;
+    window.addEventListener("load", (e)=>{
+        inputTable = document.getElementById("params-table");
+    });
+    
+    function generateRow()
+    {
+        counter++;
+        let row = inputTable.insertRow(counter+1);
+        let colx = row.insertCell(0);
+        let coly = row.insertCell(1);
+        let inputx = document.createElement("input");
+        inputx.setAttribute('class','form-control')
+        inputx.setAttribute('type','text')
+        inputx.setAttribute('name','x'+counter)
+        let inputy = document.createElement("input");
+        inputy.setAttribute('class','form-control')
+        inputy.setAttribute('type','text')
+        inputy.setAttribute('name','y'+counter)
+        colx.appendChild(inputx);
+        coly.appendChild(inputy);
+        row.appendChild(colx);
+        row.appendChild(coly);
+    }
+    function deleteRow()
+    {
+        if(counter > 0)
+        {
+            inputTable.deleteRow(counter+1);
+            counter--;
+        }
+    }
+</script>
+
+<div class="container">
+    <div class="d-flex justify-content-center h2 p-3">
+    AJUSTE DE CURVAS CUADRATICO
+    </div>
+    <div class="d-flex justify-content-center label p-2">
+        Ingrese los parametros de la funcion cuadratica
+    </div>
+    <div class="d-flex justify-content-center">
+        <form method='POST' action='' id="my_form">
+            {% csrf_token %}
+
+            <table class="table" id="params-table">
+                <tr>
+                    <td>x</td>
+                    <td>y</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input class="form-control" type="text" name="x0">
+                    </td>
+                    <td>
+                        <input class="form-control" type="text" name="y0">
+                    </td>
+                </tr>
+            </table>
+            <input type="button" value="+" onclick="generateRow()">
+            <input type="button" value="-" onclick="deleteRow()">
+            <input class="btn btn-dark" type="submit" value="Calcular">
+        </form>
+    </div>
+</div>
+
+<div class="d-flex justify-content-center label p-2">
+    {% include "./chart.html"%}
+
+</div>
+
+{% if resultado %}
+    <div style="font-size: 50;">
+        {{resultado}}
+    </div>
+{% endif %}
+
+{% include "./page/footer.html" %}
