@@ -2,26 +2,67 @@
 {% if resultado %}
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-<canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+<canvas id="myChart1" style="width:100%;max-width:600px"></canvas>
+<canvas id="myChart2" style="width:100%;max-width:600px"></canvas>
 <script>
+//Valores de los puntos ingresados
 var xValues = {{ xvalues|safe }};
 var yValues = {{ yvalues|safe }};
 
-new Chart("myChart", {
+//Valores de la curva de regresion
+var xreg = {{ xchart|safe }};
+var yreg = {{ ychart|safe }};
+
+new Chart("myChart1", {
   type: "line",
   data: {
     labels: xValues,
     datasets: [{
-      fill: false,
-      lineTension: 0,
-      backgroundColor: "rgba(0,0,255,1.0)",
-      borderColor: "rgba(0,0,255,0.1)",
-      data: yValues
+        label: 'Puntos definidos en la entrada',
+        type: 'scatter',
+        fill: false,
+        lineTension: 0,
+        backgroundColor: "rgba(0,0,255,1.0)",
+        borderColor: "rgba(0,0,255,0.1)",
+        data: yValues
     }]
   },
   options: {
+    	scales: {
+        	yAxes: [{
+            	ticks: {
+                	beginAtZero: true
+            	}
+        	}]
+    	}
+	},
     legend: {display: false},
-  }
+});
+
+new Chart("myChart2", {
+  type: "line",
+  data: {
+    labels: xreg,
+    datasets: [{
+        label: 'Curva de regresion cuadratica',
+        type: 'line',
+        fill: false,
+        lineTension: 0,
+        backgroundColor: "rgba(0,0,255,1.0)",
+        borderColor: "rgba(0,0,255,0.1)",
+        data: yreg
+    }]
+  },
+  options: {
+    	scales: {
+        	yAxes: [{
+            	ticks: {
+                	beginAtZero: true
+            	}
+        	}]
+    	},
+	},
+    legend: {display: false},
 });
 </script>
 
