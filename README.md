@@ -10,6 +10,5 @@ pip install django-bootstrap-v5
 ```
 Tambien es necesario las librerias numpy y sympy
 ```
-pip install numpy
+pip install numpy sympy
 ```
-pip install sympy
