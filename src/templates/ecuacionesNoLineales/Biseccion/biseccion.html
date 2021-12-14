@@ -5,57 +5,64 @@
 
 {% include "./page/navbar.html" %}
 
-
 <div class="container">
     <div class="d-flex justify-content-center h2 p-3">
-    METODO DE NEWTON RAPHSON
+    METODO DE LA BISECCION
     </div>
     <div class="d-flex justify-content-center label p-2">
     Recuerda usar bien los paréntesis y que los exponentes se 
     escriben con Ejemplo: 2*x**3 se lee: Dos equis al cubo:
     </div>
-    
+
     <form class="mt32" method='POST' action='' id="my_form">
         {% csrf_token %}
         <div class="form-group row">
-            <label for="fname" class="control-label col-sm-2">Función</label>
-            <div class="col-sm-10">
+            <label for="funcion" class="control-label col-sm-4">Función</label>
+            <div class="col-sm-8">
                 <input name="funcion" type="text" class="form-control" 
                 {% if funcion %} 
                     value={{funcion}} 
-                {% endif %}  
+                {% endif %} 
                 required>
             </div>
         </div>
         <div class="form-group row">
-            <label for="lname" class="control-label col-sm-2">PuntoXn</label>
-            <div class="col-sm-10">
-                <input name="punto" type="number" class="form-control"
-                {% if punto %} 
-                    value={{punto}} 
-                {% endif %}  
+            <label for="puntoxa" class="control-label col-sm-4">Punto xa (intervalo inferior)</label>
+            <div class="col-sm-8">
+                <input name="puntoxa" type="number" class="form-control" 
+                {% if puntoxa %} 
+                    value={{puntoxa}} 
+                {% endif %} 
                 required>
             </div>
         </div>
-       
         <div class="form-group row">
-            <label for="email" class="control-label col-sm-2">Error</label>
-            <div class="col-sm-10">
-                <input name="error" type="number" step=".0000001" class="form-control" 
+            <label for="puntoxb" class="control-label col-sm-4">Punto xb (intervalo superior)</label>
+            <div class="col-sm-8">
+                <input name="puntoxb" type="number" class="form-control" 
+                {% if puntoxb %} 
+                    value={{puntoxb}} 
+                {% endif %} 
+                required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="error" class="control-label col-sm-4">Error</label>
+            <div class="col-sm-8">
+                <input name="error" type="number" step=".000001" class="form-control" 
                 {% if err %} 
                     value={{err}} 
-                {% endif %}  
-                required>            
+                {% endif %} 
+                required>
             </div>
         </div>
-        
         <div class="form-group row">
-            <label for="password" class="control-label col-sm-2">Pasos</label>
-            <div class="col-sm-10">
+            <label for="pasos" class="control-label col-sm-4">Pasos</label>
+            <div class="col-sm-8">
                 <input name="pasos" type="text" class="form-control" 
                 {% if pasos %} 
                     value={{pasos}} 
-                {% endif %}  
+                {% endif %} 
                 required>
             </div>
         </div>
@@ -71,19 +78,19 @@
 {% endif %}
 
 {% if iteraciones %}
-
 <table class="table">
     <thead class="thead-dark">
         <tr>
           <th scope="col">Iteracion</th>
-          <th scope="col">x0</th>
-          <th scope="col">f(x0)</th>
-          <th scope="col">x1</th>
-          <th scope="col">f(x1)</th>
+          <th scope="col">xa</th>
+          <th scope="col">xb</th>
+          <th scope="col">xr</th>
+          <th scope="col">f(xa)</th>
+          <th scope="col">f(xr)</th>
+          <th scope="col">Ea(%)</th>
         </tr>
       </thead>
-<tbody>
-        
+<tbody>    
 {% for a in iteraciones %}
 
 <tr>
@@ -92,6 +99,8 @@
     <td>{{ a.2 }}</td>
     <td>{{ a.3 }}</td>
     <td>{{ a.4 }}</td>
+    <td>{{ a.5 }}</td>
+    <td>{{ a.6 }}</td>
 </tr>
 
 {% endfor %}
