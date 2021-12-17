@@ -1,9 +1,9 @@
 {% load bootstrap5 %}
 {% bootstrap_css %}
 
-{% include "./page/header.html" %}
+{% include "../../page/header.html" %}
 
-{% include "./page/navbar.html" %}
+{% include "../../page/navbar.html" %}
 
 <div class="container">
     <div class="d-flex justify-content-center h2 p-3">
@@ -11,7 +11,9 @@
     </div>
     <div class="d-flex justify-content-center label p-2">
         Ingresar los datos numericos en ecuaciones y resultados de manera espaciada, ejemplo:
-        4 2 5 2 5 8 5 4 3 y resultados 60.70 92.20 56.30
+        primera ecuacion: 4 2 5   
+        segunda ecuacion: 2 5 8 
+        tercera ecuacion: 5 4 3 y resultados 60.70 92.20 56.30. Solo matrices de 3x3
     </div>
     
     <form class="mt32" method='POST' action='' id="my_form">
@@ -48,11 +50,31 @@
         </div>
 
         <div class="form-group row">
-            <label for="lname" class="control-label col-sm-2">Cantidades</label>
+            <label for="lname" class="control-label col-sm-2">Cantidad 1</label>
             <div class="col-sm-10">
-                <input name="resultados" type="text" class="form-control"
+                <input name="resultado1" type="text" class="form-control"
                 {% if punto %} 
-                    value={{resultados}} 
+                    value={{resultado1}} 
+                {% endif %}  
+                required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="lname" class="control-label col-sm-2">Cantidad 2</label>
+            <div class="col-sm-10">
+                <input name="resultado2" type="text" class="form-control"
+                {% if punto %} 
+                    value={{resultado2}} 
+                {% endif %}  
+                required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="lname" class="control-label col-sm-2">Cantidad 3</label>
+            <div class="col-sm-10">
+                <input name="resultado3" type="text" class="form-control"
+                {% if punto %} 
+                    value={{resultado3}} 
                 {% endif %}  
                 required>
             </div>
@@ -62,10 +84,31 @@
         </div>
     </form>
 
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+              <th scope="col">Resultados</th>
+            </tr>
+          </thead>
+    <tbody>
+            
+    {% for a in resul %}
+    
+    <tr>
+        <th scope="row">{{ a.0 }}</th>
+        <td>{{ a.1 }}</td>
+        <td>{{ a.2 }}</td>
+        <td>{{ a.3 }}</td>
+        <td>{{ a.4 }}</td>
+    </tr>
+    
+    {% endfor %}
+    
+    </tbody>
+    </table>
+    
+    
+</div>
 
 
-
-
-
-
-{% include "./page/footer.html" %}
+{% include "../../page/footer.html" %}

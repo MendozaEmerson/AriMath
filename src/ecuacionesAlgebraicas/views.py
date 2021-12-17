@@ -1,5 +1,6 @@
 from django.shortcuts import render
 import numpy as np
+from sympy.parsing.sympy_parser import parse_expr
 
 def gaussJordan(a, b):
     valores = []
@@ -75,13 +76,41 @@ def gaussJordan(a, b):
 
 def JordanView(request):
     if request.method == 'POST':
-        Ec1_str = request.POST.get("Ecuacion1").split(' ')
-        Ec1_str.split(' ')
-        Ec1 = [float(x) for x in Ec1_str]
+        Ec1_str = request.POST.get("Ecuacion1")
+        e1 = Ec1_str.split(' ')
+        Ec1 = [float(x) for x in e1]
         
-        datos = {}
+        Ec2_str = request.POST.get("Ecuacion2")
+        e2 = Ec2_str.split(' ')
+        Ec2 = [float(x) for x in e2]
+
+        Ec3_str = request.POST.get("Ecuacion3")
+        e3 = Ec3_str.split(' ')
+        Ec3 = [float(x) for x in e3]
+
+        Ecuaciones = [Ec1, Ec2, Ec3]
+
+        cantidad1 = request.POST.get("resultado1")
+        valor1 = cantidad1.split(' ')
+        can1 = [float(x) for x in valor1]
+
+        cantidad2 = request.POST.get("resultado2")
+        valor2 = cantidad2.split(' ')
+        can2 = [float(x) for x in valor2]
+
+        cantidad3 = request.POST.get("resultado3")
+        valor3 = cantidad3.split(' ')
+        can3 = [float(x) for x in valor3]
+
+        values = [can1, can2, can3]
+        print(Ecuaciones)
+        print(values)
+        imprimir = gaussJordan(Ecuaciones, values) 
+        datos = {
+            'resul':imprimir[4]
+        }
 
     else:
         datos = {}
 
-    return
+    return render(request, 'ecuacionesAlgebraicas/GaussJordan/gauss.html', datos)
