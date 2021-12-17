@@ -1,0 +1,71 @@
+{% load bootstrap5 %}
+{% bootstrap_css %}
+
+{% include "./page/header.html" %}
+
+{% include "./page/navbar.html" %}
+
+<div class="container">
+    <div class="d-flex justify-content-center h2 p-3">
+    METODO DE GAUSS JORDAN
+    </div>
+    <div class="d-flex justify-content-center label p-2">
+        Ingresar los datos numericos en ecuaciones y resultados de manera espaciada, ejemplo:
+        4 2 5 2 5 8 5 4 3 y resultados 60.70 92.20 56.30
+    </div>
+    
+    <form class="mt32" method='POST' action='' id="my_form">
+        {% csrf_token %}
+        <div class="form-group row">
+            <label for="fname" class="control-label col-sm-2">Primera Ecuacion</label>
+            <div class="col-sm-10">
+                <input name="Ecuacion1" type="text" class="form-control" 
+                {% if funcion %} 
+                    value={{Ecuacion1}} 
+                {% endif %}  
+                required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="fname" class="control-label col-sm-2">Segunda Ecuacion</label>
+            <div class="col-sm-10">
+                <input name="Ecuacion2" type="text" class="form-control" 
+                {% if funcion %} 
+                    value={{Ecuacion2}} 
+                {% endif %}  
+                required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="fname" class="control-label col-sm-2">Tercera Ecuacion</label>
+            <div class="col-sm-10">
+                <input name="Ecuacion3" type="text" class="form-control" 
+                {% if funcion %} 
+                    value={{Ecuacion3}} 
+                {% endif %}  
+                required>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="lname" class="control-label col-sm-2">Cantidades</label>
+            <div class="col-sm-10">
+                <input name="resultados" type="text" class="form-control"
+                {% if punto %} 
+                    value={{resultados}} 
+                {% endif %}  
+                required>
+            </div>
+        </div>
+        <div class="col text-center">
+            <button class="btn btn-dark" type="submit">Calcular </button>
+        </div>
+    </form>
+
+
+
+
+
+
+
+{% include "./page/footer.html" %}
