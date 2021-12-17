@@ -9,7 +9,7 @@
 var xValues = {{ xvalues|safe }};
 var yValues = {{ yvalues|safe }};
 
-//Valores de la curva de regresion
+//Valores de la curva de regresion (recta de regresion lineal)
 var xreg = {{ xchart|safe }};
 var yreg = {{ ychart|safe }};
 
@@ -44,7 +44,7 @@ new Chart("myChart2", {
   data: {
     labels: xreg,
     datasets: [{
-        label: 'Curva de regresion cuadratica',
+        label: 'Recta de Regresión Lineal',
         type: 'line',
         fill: false,
         lineTension: 0,
