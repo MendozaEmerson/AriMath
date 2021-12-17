@@ -3,7 +3,6 @@ from django.shortcuts import render
 from . import regresion
 import json
 
-
 def fit(f_type, xvalues, yvalues):
     if f_type == 'cuadratic':
         print(f_type)
@@ -30,4 +29,4 @@ def HomeView(request):
         ctx={'resultado':15, 'xvalues':xvalues_json, 'yvalues':yvalues_json, 'xchart': chartX, 'ychart':chartY, 'a':a, 'b':b, 'c':c}
     else:
         ctx = {}
-    return render(request, 'ajusteCurvas/ajusteCurvas.html', ctx)
+    return render(request, 'ajusteCurvas/regresionCuadratica/regresionCuadratica.html', ctx)

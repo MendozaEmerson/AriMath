@@ -17,8 +17,11 @@ from django.contrib import admin
 from django.urls import path
 from django.urls.conf import include
 
+from calculadoraMetodosNumericos.views import home
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('ajusteCurvas/', include('ajusteCurvas.urls')),
     path('ecuacionesNoLineales/', include('ecuacionesNoLineales.urls')),
+    path('', home, name="home"),
 ]
