@@ -23,5 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('ajusteCurvas/', include('ajusteCurvas.urls')),
     path('ecuacionesNoLineales/', include('ecuacionesNoLineales.urls')),
+    path('ecuacionesAlgebraicas/', include('ecuacionesAlgebraicas.urls')),
     path('', home, name="home"),
 ]
