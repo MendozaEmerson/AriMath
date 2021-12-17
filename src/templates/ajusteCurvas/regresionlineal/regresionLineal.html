@@ -1,0 +1,67 @@
+{% load bootstrap5 %}
+{% bootstrap_css %}
+
+{% include "../../page/header.html" %}
+
+{% include "../../page/navbar.html" %}
+
+<div class="container">
+    <div class="d-flex justify-content-center h2 p-3">
+    Regresion Lineal
+    </div>
+    <div class="d-flex justify-content-center label p-2">
+        Ingrese los puntos separados por espacios segun el eje al que corresponda
+    </div>
+    <div class="d-flex justify-content-center">
+        <form method='POST' action='' id="my_form">
+            {% csrf_token %}
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">X</span>
+                </div>
+                <input name="xvalues" type="text" class="form-control">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Y</span>
+                </div>
+                <input name="yvalues" type="text" class="form-control">
+            </div>
+            <input type="button" class="btn btn-secondary" onclick="getRandomNumbers()" value="Ejemplo aleatorio">
+            <input class="btn btn-dark" type="submit" value="Calcular">
+        </form>
+    </div>
+</div>
+
+{% if resultado %}
+<div class="container d-flex justify-content-center label p-2">
+    <div class="alert alert-secondary" role="alert">
+        y = {{a}}x&sup2 + {{b}}x + {{c}}
+    </div>
+</div>
+{% endif %}
+
+<div class="d-flex justify-content-center label p-2">
+    {% include "./chart.html"%}
+</div>
+
+<script>
+
+    function getRandomNumbers()
+    {
+        let xinput = document.getElementsByName("xvalues")[0];
+        let yinput = document.getElementsByName("yvalues")[0];
+        xinput.value = "";
+        yinput.value = "";
+        let cantidad = Math.round(Math.random()*20+5);
+        let escala = Math.round(Math.random()*3+3);
+        for(let i=0 ; i<cantidad ; i++)
+        {
+            xinput.value += (i*escala) + " ";
+            yinput.value += Math.random()*180+20 + " ";
+        }
+    }
+
+</script>
+
+{% include "../../page/footer.html" %}

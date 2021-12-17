@@ -30,3 +30,25 @@ def HomeView(request):
     else:
         ctx = {}
     return render(request, 'ajusteCurvas/regresionCuadratica/regresionCuadratica.html', ctx)
+
+def RegresionLineal(request):
+    if request.method == 'POST':
+        xvalues = request.POST.get("xvalues")
+        yvalues = request.POST.get("yvalues")
+        if xvalues=="" or yvalues=="":
+            return render(request, 'ajusteCurvas/ajusteCurvas.html', {})
+        xvalues = list(map(float, xvalues.split()))
+        yvalues = list(map(float, yvalues.split()))
+
+        yvalues = [x for y, x in sorted(zip(xvalues, yvalues))]
+        xvalues.sort()
+
+        xvalues_json = json.dumps(xvalues)
+        yvalues_json = json.dumps(yvalues)
+        # chart x y y son coordenadas paa la recta solo necesito dos coeficientes y usar una funcion de regresion lineal
+        chartX, chartY, a, b, c = regresion.regresionLineal(xvalues, yvalues)
+
+        ctx={'resultado':15, 'xvalues':xvalues_json, 'yvalues':yvalues_json, 'xchart': chartX, 'ychart':chartY, 'a':a, 'b':b, 'c':c}
+    else:
+        ctx = {}
+    return render(request, 'ajusteCurvas/regresionlineal/regresionlineal.html', ctx)
