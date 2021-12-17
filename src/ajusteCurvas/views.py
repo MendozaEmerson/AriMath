@@ -51,4 +51,4 @@ def RegresionLineal(request):
         ctx={'resultado':15, 'xvalues':xvalues_json, 'yvalues':yvalues_json, 'xchart': chartX, 'ychart':chartY, 'a':a, 'b':b, 'c':c}
     else:
         ctx = {}
-    return render(request, 'ajusteCurvas/regresionlineal/regresionlineal.html', ctx)
+    return render(request, 'ajusteCurvas/regresionLineal/regresionLineal.html', ctx)

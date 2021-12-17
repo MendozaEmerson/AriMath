@@ -37,7 +37,7 @@ def regresionCuadratica(xvalues, yvalues):
     chartY = [cuadratic(coeficientes[2], coeficientes[1], coeficientes[0], x) for x in chartX]
 
     return chartX, chartY, coeficientes[2], coeficientes[1], coeficientes[0]
-
+#modificar para que sea una linea
 def regresionLineal(xvalues, yvalues):
     size = len(xvalues)
     
