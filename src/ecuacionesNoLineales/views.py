@@ -130,3 +130,6 @@ def NewtonView(request):
         ctx = {}
 
     return render(request, 'ecuacionesNoLineales/Newton-Raphson/newton.html', ctx)
+
+def homeECN(request):
+    return render(request, 'ecuacionesNoLineales/nolineal.html', {})

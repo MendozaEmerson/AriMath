@@ -1,0 +1,21 @@
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% include '../page/header.html' %}
+{% include '../page/navbar.html' %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="border m-3 col-8 text-center">
+            <div class="h3">
+                Ecuaciones no lineales
+            </div>
+            <hr>
+            <div>
+                <a href="/ecuacionesNoLineales/Biseccion" class="btn btn-success m-2">Biseccion</a>
+            </div>
+            <div>
+                <a href="/ecuacionesNoLineales/NewtonRaphson" class="btn btn-success m-2">Newton Rapson</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% include '../page/footer.html' %}

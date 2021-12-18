@@ -115,3 +115,6 @@ def JordanView(request):
         datos = {}
 
     return render(request, 'ecuacionesAlgebraicas/GaussJordan/gauss.html', datos)
+
+def homeECA(request):
+    return render(request, 'ecuacionesAlgebraicas/algebraica.html', {})
