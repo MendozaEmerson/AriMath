@@ -106,6 +106,7 @@ def JordanView(request):
         print(Ecuaciones)
         print(values)
         imprimir = gaussJordan(Ecuaciones, values) 
+        print(imprimir[4])
         datos = {
             'resul':imprimir[4]
         }
