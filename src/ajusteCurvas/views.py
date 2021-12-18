@@ -52,3 +52,7 @@ def RegresionLineal(request):
     else:
         ctx = {}
     return render(request, 'ajusteCurvas/regresionLineal/regresionLineal.html', ctx)
+
+
+def homeAC(request):
+    return render(request, 'ajusteCurvas/curva.html', {})
