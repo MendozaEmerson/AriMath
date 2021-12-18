@@ -3,5 +3,6 @@ from django.urls.resolvers import URLPattern
 from . import views
 
 urlpatterns = [
-    path('GaussJordan', views.JordanView , name='JordanView')
+    path('GaussJordan', views.JordanView , name='JordanView'),
+    path('', views.homeECA , name='algebraica'),
 ]
